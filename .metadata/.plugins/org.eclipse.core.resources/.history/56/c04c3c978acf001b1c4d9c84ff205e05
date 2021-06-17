@@ -36,10 +36,8 @@ package net.IGaitanM.controller;
 		@GetMapping("/view/{id}")
 		public String verDetalle(@PathVariable("id") int idVacante, Model model) {		
 			System.out.println("IdVacante: " + idVacante);
-			model.addAttribute("idVacante", idVacante);
-			
-			// Buscar los detalles de la vacante en la BBDD...
-			
+			model.addAttribute("idVacante", idVacante);		
+			// Buscar los detalles de la vacante en la BD...		
 			return "vacantes/detalle";
 		}
 

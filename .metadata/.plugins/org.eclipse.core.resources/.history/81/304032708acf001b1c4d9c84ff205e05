@@ -18,7 +18,6 @@ package net.IGaitanM.controller;
 		
 		/**
 		 * Método que responde a peticiones http tipo get
-		 * @param idVacante recoge el valor del id de tipo int
 		 * @return mensaje
 		 */
 		@GetMapping("/delete")
@@ -30,16 +29,14 @@ package net.IGaitanM.controller;
 		
 		/**
 		 * Método que responde a peticiones http tipo get
-		 * @param idVacante recoge el valor del id de tipo int
+		 * @param idVacante recoge el valor del id
 		 * @return vacantes/detalle
 		 */
 		@GetMapping("/view/{id}")
 		public String verDetalle(@PathVariable("id") int idVacante, Model model) {		
 			System.out.println("IdVacante: " + idVacante);
-			model.addAttribute("idVacante", idVacante);
-			
-			// Buscar los detalles de la vacante en la BBDD...
-			
+			model.addAttribute("idVacante", idVacante);		
+			// Buscar los detalles de la vacante en la BD...		
 			return "vacantes/detalle";
 		}
 
