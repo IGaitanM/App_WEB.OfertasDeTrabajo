@@ -17,8 +17,8 @@ package net.IGaitanM.controller;
 	public class VacantesController {
 		
 		/**
-		 * Método que responde a peticiones http tipo get
-		 * @param idVacante recoge el valor del id de tipo int
+		 * Método que responde a peticiones http tipo get y elimina una vacante por su id
+		 * @param idVacante recoge el valor del id de la url en la variable id de tipo int
 		 * @return mensaje
 		 */
 		@GetMapping("/delete")
@@ -29,8 +29,8 @@ package net.IGaitanM.controller;
 		}
 		
 		/**
-		 * Método que responde a peticiones http tipo get
-		 * @param idVacante recoge el valor del id de tipo int
+		 * Método que responde a peticiones http tipo get y recoge el id de la vacante
+		 * @param idVacante recoge el valor del id de la url en la variable id de tipo int
 		 * @return vacantes/detalle
 		 */
 		@GetMapping("/view/{id}")

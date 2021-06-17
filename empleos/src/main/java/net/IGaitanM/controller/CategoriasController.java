@@ -16,11 +16,17 @@ public class CategoriasController {
 		return "categorias/listCategorias";
 	}
 	// @GetMapping("/create")
+	/**
+	 * Método para crear categorías a través del formulario formCategoria.html.
+	 */
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String crear() {
 		return "categorias/formCategoria";
 	}
 	// @PostMapping("/save")
+	/**
+	 * Método que guarda los valores del formulario formCategoria en sus variables correspondientes.
+	 */
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String guardar(@RequestParam("nombre") String nombre,@RequestParam("descripcion") String descripcion) {
 		System.out.println("Categoria:" + nombre);
