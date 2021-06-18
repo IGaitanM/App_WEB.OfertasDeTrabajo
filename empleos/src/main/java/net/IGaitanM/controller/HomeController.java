@@ -18,7 +18,7 @@ import net.IGaitanM.service.IVacantesService;
 public class HomeController {
 	
 	@Autowired                                 //Instancia de una clase de servicio
-	private IVacantesService serviceVacantes;
+	private IVacantesService serviceVacantes;  //Atributo del tipo de la interfaz
 	
 	/**
 	 * Método que crea un objeto de tipo lista, lo agrega al modelo y lo renderiza en la vista tabla html
@@ -28,7 +28,6 @@ public class HomeController {
 	public String mostrarTabla(Model model) {
 		List<Vacante> lista = serviceVacantes.buscarTodas();
 		model.addAttribute("vacantes", lista);
-		
 		return "tabla"; //devuelve la vista tabla.html
 	}
 	

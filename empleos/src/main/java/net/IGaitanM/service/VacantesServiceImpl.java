@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import net.IGaitanM.model.Vacante;
 
 /**
- * Clase que implementa la interfaz IVacantesService.
- * 
+ * Clase que implementa la interfaz IVacantesService, crea las vacantes y las añade a la variable lista
+ * @param lista , variable de tipo list que recoge todas las vacantes 
  */
+
 @Service
 public class VacantesServiceImpl implements IVacantesService {
 	
@@ -71,13 +72,17 @@ public class VacantesServiceImpl implements IVacantesService {
 		}
 		
 	}
-
+	/**
+	 * Método que devuelve la lista de todas las vacantes
+	*/
 	public List<Vacante> buscarTodas() {
 		return lista;
 	}
 
+	/**
+	 * Método que recorre la lista de vacantes y compara el id con el pasado por parámetro
+	*/
 	public Vacante buscarPorId(Integer idVacante) {
-
 		for (Vacante v : lista) {
 			if (v.getId()==idVacante) {
 				return v;
