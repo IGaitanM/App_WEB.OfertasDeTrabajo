@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
 	import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.PathVariable;
-	import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestParam;
 
 import net.IGaitanM.model.Vacante;
@@ -21,6 +22,36 @@ import net.IGaitanM.service.IVacantesService;
 		
 		@Autowired                                 //Instancia de una clase de servicio
 		private IVacantesService serviceVacantes; 
+		
+		/**
+		 * Método para crear vacantes, renderiza el formulario de formVacante.html
+		 * @param 
+		 * @return vacantes/formVacante
+		 */
+		@GetMapping("/create")
+		public String crear() {
+			
+			return "vacantes/formVacante";
+		}
+		
+		/**
+		 * Método para guardar vacantes
+		 * @param 
+		 * @return vacantes/formVacante
+		 */
+		@PostMapping("/save")
+		public String guardar(@RequestParam("nombre") String nombre, @RequestParam("descripcion") String descripcion, 
+				@RequestParam("estatus") String estatus, @RequestParam("fecha") String fecha, @RequestParam("destacado") int destacado, 
+				@RequestParam("salario") double salario, @RequestParam("detalles") String detalles) {
+			System.out.println("Nombre Vacante: " + nombre);
+			System.out.println("Descripcion: " + descripcion);
+			System.out.println("Estatus: " + estatus);
+			System.out.println("Fecha Publicación: " + fecha);
+			System.out.println("Destacado: " + destacado);
+			System.out.println("Salario Ofrecido: " + salario);
+			System.out.println("detalles: " + detalles);
+			return "vacantes/listVacantes"; 
+		}
 		
 		/**
 		 * Método que responde a peticiones http tipo get y elimina una vacante por su id
