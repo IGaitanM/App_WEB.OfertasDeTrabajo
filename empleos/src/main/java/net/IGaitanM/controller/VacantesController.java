@@ -39,7 +39,15 @@ import net.IGaitanM.service.IVacantesService;
 		 * @param 
 		 * @return vacantes/formVacante
 		 */
+		
 		@PostMapping("/save")
+		public String guardar(Vacante vacante) {
+			System.out.println("Vacante " + vacante);
+			return "vacantes/listVacantes"; 
+		}
+		
+		/*
+		 @PostMapping("/save")
 		public String guardar(@RequestParam("nombre") String nombre, @RequestParam("descripcion") String descripcion, 
 				@RequestParam("estatus") String estatus, @RequestParam("fecha") String fecha, @RequestParam("destacado") int destacado, 
 				@RequestParam("salario") double salario, @RequestParam("detalles") String detalles) {
@@ -51,7 +59,9 @@ import net.IGaitanM.service.IVacantesService;
 			System.out.println("Salario Ofrecido: " + salario);
 			System.out.println("detalles: " + detalles);
 			return "vacantes/listVacantes"; 
-		}
+		} 
+		*/
+		 
 		
 		/**
 		 * Método que responde a peticiones http tipo get y elimina una vacante por su id
