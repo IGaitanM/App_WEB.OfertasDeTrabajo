@@ -25,7 +25,7 @@ public class CategoriasController {
 	}
 	// @PostMapping("/save")
 	/**
-	 * Método que guarda los valores del formulario formCategoria en sus variables correspondientes.
+	 * Método que guarda los valores del formulario formCategoria.html en sus variables correspondientes.
 	 */
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String guardar(@RequestParam("nombre") String nombre,@RequestParam("descripcion") String descripcion) {
