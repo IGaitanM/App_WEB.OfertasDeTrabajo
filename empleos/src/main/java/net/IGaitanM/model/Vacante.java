@@ -18,7 +18,6 @@ public class Vacante {
 	private String estatus;
 	private String detalles;
 	
-	
 
 	public String getEstatus() {
 		return estatus;
@@ -85,7 +84,6 @@ public class Vacante {
 		this.destacado = destacado;
 	}
 
-	
 	
 	public String getImagen() {
 		return imagen;
