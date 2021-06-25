@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -59,12 +61,19 @@ import net.IGaitanM.service.IVacantesService;
 		
 		/**
 		 * Método para guardar vacantes. Cuando llega el objeto vacante al controlador se agrega automaticamente a nuestra lista.
+		 * Si hay un error lo mnuestra en consola utilizando un blucle for y retorna a la pantalla del formulario.
 		 * @param 
-		 * @return vacantes/formVacante
+		 * @return vacantes/listVacantes
 		 */
 		
 		@PostMapping("/save")
-		public String guardar(Vacante vacante) {
+		public String guardar(Vacante vacante, BindingResult result) {
+			if (result.hasErrors()) {
+				for (ObjectError error: result.getAllErrors()){                             //Para ver los errores en la consola
+					System.out.println("Ocurrio un error: " + error.getDefaultMessage());
+					}
+				return "vacantes/formVacante"; 
+			}
 			serviceVacantes.guardar(vacante);
 			System.out.println("Vacante " + vacante);
 			return "vacantes/listVacantes"; 
