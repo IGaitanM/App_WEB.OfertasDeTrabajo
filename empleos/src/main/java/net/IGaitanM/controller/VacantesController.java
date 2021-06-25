@@ -2,6 +2,7 @@ package net.IGaitanM.controller;
 	
 	import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -28,6 +29,22 @@ import net.IGaitanM.service.IVacantesService;
 		
 		@Autowired                                 //Instancia de una clase de servicio
 		private IVacantesService serviceVacantes; 
+		
+		/**
+		 * Método para mostrar index, renderiza las vacantes en la lista
+		 * @param model
+		 * @return vacantes/listVacantes
+		 */
+		@GetMapping("/index")
+		public String mostrarIndex(Model model) {
+			List<Vacante> lista = serviceVacantes.buscarTodas();	// Obttiene todas las vacantes (Se recuperan de la clase de servicio)
+			model.addAttribute("vacantes", lista);					// Se agrega el listado de vacantes al modelo.
+			// Renderiza las vacantes en la lista (integra el archivo template-empleos/listvACANTES.HTML)
+			
+			// Agrega la opción "Vacantes" al menú, configurando la URL "vacantes/index"
+			
+			return "vacantes/listVacantes";
+		}
 		
 		/**
 		 * Método para crear vacantes, renderiza el formulario de formVacante.html
