@@ -49,13 +49,12 @@ import net.IGaitanM.service.IVacantesService;
 		}
 		
 		/**
-		 * Método para crear vacantes, renderiza el formulario de formVacante.html
-		 * @param 
+		 * Método para crear vacantes. 
+		 * @param vacante (Vinculado con el objeto vacante del formulario)
 		 * @return vacantes/formVacante
 		 */
 		@GetMapping("/create")
-		public String crear() {
-			
+		public String crear(Vacante vacante) {
 			return "vacantes/formVacante";
 		}
 		
@@ -65,7 +64,6 @@ import net.IGaitanM.service.IVacantesService;
 		 * @param 
 		 * @return vacantes/listVacantes
 		 */
-		
 		@PostMapping("/save")
 		public String guardar(Vacante vacante, BindingResult result) {
 			if (result.hasErrors()) {
