@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.IGaitanM.model.Vacante;
 import net.IGaitanM.service.IVacantesService;
@@ -65,7 +66,7 @@ import net.IGaitanM.service.IVacantesService;
 		 * @return vacantes/listVacantes
 		 */
 		@PostMapping("/save")
-		public String guardar(Vacante vacante, BindingResult result) {
+		public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes) {
 			if (result.hasErrors()) {
 				for (ObjectError error: result.getAllErrors()){                             //Para ver los errores en la consola
 					System.out.println("Ocurrio un error: " + error.getDefaultMessage());
@@ -73,6 +74,7 @@ import net.IGaitanM.service.IVacantesService;
 				return "vacantes/formVacante"; 
 			}
 			serviceVacantes.guardar(vacante);
+			attributes.addFlashAttribute("msg", "Registro Guardado");     //Agrega un atributo flah para que este presente en la redirección
 			System.out.println("Vacante " + vacante);
 			return "redirect:/vacantes/index"; 
 		}
