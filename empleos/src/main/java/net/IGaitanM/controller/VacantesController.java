@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.IGaitanM.model.Vacante;
+import net.IGaitanM.service.ICategoriasService;
 import net.IGaitanM.service.IVacantesService;
 	
 	/**
@@ -32,6 +33,9 @@ import net.IGaitanM.service.IVacantesService;
 		
 		@Autowired                                 //Instancia de una clase de servicio
 		private IVacantesService serviceVacantes; 
+		
+		@Autowired
+		private ICategoriasService serviceCategorias;
 		
 		/**
 		 * Método para mostrar index, renderiza las vacantes en la lista
@@ -55,7 +59,8 @@ import net.IGaitanM.service.IVacantesService;
 		 * @return vacantes/formVacante
 		 */
 		@GetMapping("/create")
-		public String crear(Vacante vacante) {
+		public String crear(Vacante vacante, Model model) {
+			model.addAttribute("categorias", serviceCategorias.buscarTodas());	
 			return "vacantes/formVacante";
 		}
 		
