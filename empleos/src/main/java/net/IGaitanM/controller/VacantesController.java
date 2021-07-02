@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.IGaitanM.model.Vacante;
 import net.IGaitanM.service.ICategoriasService;
 import net.IGaitanM.service.IVacantesService;
+import net.IGaitanM.util.Utileria;
 	
 	/**
 	 * Clase que genera URLs dinámicas con la anotación PathVariable
@@ -71,13 +73,25 @@ import net.IGaitanM.service.IVacantesService;
 		 * @return vacantes/listVacantes
 		 */
 		@PostMapping("/save")
-		public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes) {
+		public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes,
+				@RequestParam("archivoImagen") MultipartFile multiPart ) {
 			if (result.hasErrors()) {
 				for (ObjectError error: result.getAllErrors()){                             //Para ver los errores en la consola
 					System.out.println("Ocurrio un error: " + error.getDefaultMessage());
 					}
 				return "vacantes/formVacante"; 
 			}
+			
+			if (!multiPart.isEmpty()) {
+				//String ruta = "\Curso_SpringBoot\App_Web.OfertasDeTrabajo\img-vacantes"; // Linux/MAC
+				String ruta = "E:\\Curso_SpringBoot\\App_Web.OfertasDeTrabajo\\img-vacantes\\"; // Windows
+				String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+				if (nombreImagen != null){ // La imagen si se subio
+				// Procesamos la variable nombreImagen
+				vacante.setImagen(nombreImagen);
+				}
+			}
+				
 			serviceVacantes.guardar(vacante);
 			attributes.addFlashAttribute("msg", "Registro Guardado");     //Agrega un atributo flah para que este presente en la redirección
 			System.out.println("Vacante " + vacante);
